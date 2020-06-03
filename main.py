@@ -1,26 +1,32 @@
 from googletrans import Translator
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ui import Ui_Form
+from ui import Ui_Translator
 import sys
 
 app = QtWidgets.QApplication(sys.argv)
 Form = QtWidgets.QWidget()
-ui = Ui_Form()
+ui = Ui_Translator()
 ui.setupUi(Form)
 Form.show()
 
-tran = Translator()
+tr = Translator()
 
 
-def tran_g():
-    text = ui.TextInput.text()
-    ja = tran.translate(text, dest='ja')
-    en = tran.translate(text, dest='en')
-    ru = tran.translate(text, dest='ru')
-    ui.JapaneseText.setText(ja.text)
-    ui.EnglishText.setText(en.text)
-    ui.RussianText.setText(ru.text)
+def translate():
+	text = ui.textEdit.text()
+	ja = tr.translate(text, dest='ja')
+	en = tr.translate(text, dest='en')
+	ru = tr.translate(text, dest='ru')
+	cn = tr.translate(text, dest='zh-CN')
+	fr = tr.translate(text, dest='fr')
+	es = tr.translate(text, dest='es')
+	ui.JaEdit.setText(ja.text)
+	ui.EnEdit.setText(en.text)
+	ui.RuEdit.setText(ru.text)
+	ui.CnEdit.setText(cn.text)
+	ui.FrEdit.setText(fr.text)
+	ui.EsEdit.setText(es.text)
 
-ui.pushButton.clicked.connect(tran_g)
+ui.pushButton.clicked.connect(translate)
 
 sys.exit(app.exec_())
